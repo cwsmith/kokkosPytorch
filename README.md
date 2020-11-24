@@ -30,7 +30,7 @@ then follow the instructions here:
 
 https://github.com/pytorch/pytorch/blob/master/docs/libtorch.rst#building-libtorch-using-cmake
 
-Note, this enables AVX512, MKL, and some other features our machines (or your's) don't have.  These can be disabled in the cmake command.
+Note, this enables AVX512, MKL, and some other features our machines (or yours) don't have.  These can be disabled in the cmake command.
 
 ## build kokkos pytorch example
 
