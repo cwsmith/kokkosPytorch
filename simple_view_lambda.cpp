@@ -6,8 +6,10 @@ using view_type = Kokkos::View<double * [3]>;
 int main(int argc, char* argv[]) {
   Kokkos::initialize(argc, argv);
 
+  printf("foo\n");
   torch::jit::script::Module module;
   try {
+    printf("before loading pytorch model \"%s\" \n", argv[1]);
     module = torch::jit::load(argv[1]);
     printf("loaded pytorch model \"%s\" \n", argv[1]);
   }
