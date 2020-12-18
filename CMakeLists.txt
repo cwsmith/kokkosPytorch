@@ -10,9 +10,10 @@ include_directories(${Kokkos_INCLUDE_DIRS_RET})
 
 find_package(Torch REQUIRED)
 find_package(TorchSparse REQUIRED)
+find_package(TorchScatter REQUIRED)
 
 add_executable(hello-world simple_view_lambda.cpp)
-target_link_libraries(hello-world "${TORCH_LIBRARIES}")
 target_link_libraries(hello-world TorchSparse::TorchSparse)
+target_link_libraries(hello-world TorchScatter::TorchScatter)
 target_link_libraries(hello-world kokkos)
 set_property(TARGET hello-world PROPERTY CXX_STANDARD 14)
