@@ -6,7 +6,6 @@ using view_type = Kokkos::View<double * [3]>;
 int main(int argc, char* argv[]) {
   Kokkos::initialize(argc, argv);
 
-  printf("foo\n");
   torch::jit::script::Module module;
   try {
     printf("before loading pytorch model \"%s\" \n", argv[1]);
@@ -17,6 +16,15 @@ int main(int argc, char* argv[]) {
     std::cerr << "error loading the model\n";
     return -1;
   }
+
+  at::Tensor edgeList = at::ones({2, 1}, at::kLong);
+  edgeList[0][0] = 0;
+  std::vector<torch::jit::IValue> input = {
+    at::ones({2, 3, 3}, at::kFloat),
+    edgeList
+  };
+  at::Tensor output = module.forward(input).toTensor();
+  std::cout << output;
 
   {
     view_type a("A", 10);
